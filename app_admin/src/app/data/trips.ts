@@ -29,4 +29,4 @@ export const trips = [
     "image": "reef3.jpg",
     "description": "<p>Claire’s Reef - Donec sed felis risus. Nulla facil...</p>"
   }
-]
+];
