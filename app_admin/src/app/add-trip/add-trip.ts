@@ -32,11 +32,11 @@ export class AddTripComponent implements OnInit {
       resort: ['', Validators.required],
       perPerson: ['', Validators.required],
       image: ['', Validators.required],
-      description: ['', Validators.required]
+      description: ['', Validators.required],
     });
   }
 
-  onSubmit(): void {
+  public onSubmit(): void {
     this.submitted = true;
     if (this.addForm.valid) {
       this.tripService.addTrip(this.addForm.value).subscribe({

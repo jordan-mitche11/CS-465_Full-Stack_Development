@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./trip-listing.css'],
   providers: [TripDataService]
 })
+
 export class TripListingComponent implements OnInit {
 
   trips!: Trip[];
@@ -22,7 +23,7 @@ export class TripListingComponent implements OnInit {
   constructor(
     private tripDataService: TripDataService,
     private router: Router
-  ) {
+   ) {
     console.log('trip-listing constructor');
   }
 
@@ -35,9 +36,11 @@ export class TripListingComponent implements OnInit {
       .subscribe({
         next: (value: any) => {
           this.trips = value;
-          if (value.length > 0) {
+          if (value.length > 0) 
+            {
             this.message = 'There are ' + value.length + ' trips available.';
-          } else {
+          } 
+          else {
             this.message = 'There were no trips retrieved from the database';
           }
           console.log(this.message);
@@ -45,7 +48,7 @@ export class TripListingComponent implements OnInit {
         error: (error: any) => {
           console.log('Error: ' + error);
         }
-      });
+      })
   }
 
   ngOnInit(): void {
