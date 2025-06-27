@@ -81,10 +81,49 @@ const tripsAddTrip = async(req, res) => {
         // console.log(q);
 };
 
+// PUT: /trips/:tripCode - Updates an existing Trip
+// Regardless of outcome, response must include HTML status code and JSON message to the requesting client
+const tripsUpdateTrip = async (req, res) => {
+
+  // Uncomment for debugging
+  console.log(req.params);
+  console.log(req.body);
+
+  const q = await Model
+    .findOneAndUpdate(
+      { 'code' : req.params.tripCode },
+      {
+        code: req.body.code,
+        name: req.body.name,
+        length: req.body.length,
+        start: req.body.start,
+        resort: req.body.resort,
+        perPerson: req.body.perPerson,
+        image: req.body.image,
+        description: req.body.description
+      }
+    )
+    .exec();
+
+  if (!q) { // Database returned no data
+    return res
+      .status(400)
+      .json({ message: "Trip not found" });
+  } else { // Return resulting updated trip
+    return res
+      .status(201)
+      .json(q);
+  }
+
+  // Uncomment to show results on console
+  // console.log(q);
+};
+
 
 
 module.exports = {
   tripsList,
   tripsFindByCode,
-  tripsAddTrip
+  tripsAddTrip,
+  tripsUpdateTrip
 };
